@@ -5,7 +5,7 @@ import os
 from hackernews.models import Post
 
 news_url = 'https://news.ycombinator.com/'
-posts_db_limit = os.environ.get('POSTS_DB_LIMIT', None)
+posts_db_limit = int(os.environ['POSTS_DB_LIMIT']) if os.environ.get('POSTS_DB_LIMIT') else None
 
 
 def delete_old_posts():

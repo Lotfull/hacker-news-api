@@ -1,14 +1,17 @@
 import os
 
-from rest_framework import generics, filters, pagination
+from rest_framework import generics, filters, pagination, response
 
 from . import api
 from .models import Post
 
 
 class PostsLimitOffsetPagination(pagination.LimitOffsetPagination):
-    default_limit = os.environ.get('POSTS_API_LIMIT_DEFAULT', 5)
-    max_limit = os.environ.get('POSTS_API_LIMIT_MAX', 100)
+    default_limit = int(os.environ.get('POSTS_API_LIMIT_DEFAULT', 5))
+    max_limit = int(os.environ.get('POSTS_API_LIMIT_MAX', 100))
+
+    def get_paginated_response(self, data):
+        return response.Response(data)
 
 
 class PostsView(generics.ListAPIView):
