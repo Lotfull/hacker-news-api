@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '185.228.233.249',
     '127.0.0.1',
-    '0.0.0.0',
+    'localhost',
 ]
 
 
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hackernews'
+    'rest_framework',
+    'hackernews',
 ]
 
 MIDDLEWARE = [
