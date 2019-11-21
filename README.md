@@ -27,7 +27,39 @@ API метод для получения списка новостей на за
 Используется Docker
 Код покрыт тестами pytest
 
-# Запуск
+# Launch
+
+## Settings
+Настройки API могут быть изменены в файле `.env`
+
+Запуск Django в режиме DEBUG=True если MODE=LOCAL, иначе DEBUG=False:
+   
+    MODE=LOCAL
+
+Установка ограничения на количество постов в базе данных (по умолчанию без ограничения):
+   
+    #POSTS_DB_LIMIT=30
+
+Параметр limit по умолчанию:
+   
+    POSTS_API_LIMIT_DEFAULT=5
+
+Максимальное значение параметра limit:
+   
+    POSTS_API_LIMIT_MAX=100
+
+Имя хоста для удалённого запуска:
+   
+    HOST_IP=localhost
 
 
+## Local
 
+    pip3 install -r requirements.txt
+    cp -n .env_example .env
+    python3 manage.py migrate
+    python3 -u manage.py runserver
+    
+## Docker
+
+    docker-compose up

@@ -1,6 +1,7 @@
+import os
+
 import requests
 from bs4 import BeautifulSoup as bs
-import os
 
 from hackernews.models import Post
 
