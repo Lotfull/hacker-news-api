@@ -3,3 +3,4 @@ django
 djangorestframework
 python-dotenv
 beautifulsoup4
+timeloop
