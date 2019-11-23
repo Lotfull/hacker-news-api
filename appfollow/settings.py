@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dotenv
+
+dotenv.load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,10 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p=u0=hsv8$6-vm91f%kj_-$b1&b0k6lckpkh4)#up&&o6=22w#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('MODE', 'LOCAL') == 'LOCAL'
 
-ALLOWED_HOSTS = [
-    '185.228.233.249',
+ALLOWED_HOSTS = [os.environ['HOST_IP']] if 'HOST_IP' in os.environ else [
     '127.0.0.1',
     'localhost',
 ]
