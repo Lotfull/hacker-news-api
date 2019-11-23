@@ -5,7 +5,6 @@ import os
 from hackernews.models import Post
 
 news_url = 'https://news.ycombinator.com/'
-posts_api_limit = os.environ.get('POSTS_API_LIMIT', 5)
 posts_db_limit = os.environ.get('POSTS_DB_LIMIT', None)
 
 
@@ -36,21 +35,3 @@ def scrap():
         title = post.text
         url = post['href']
         Post.create(title, url)
-
-
-def get(params):
-    force = params.get('force')
-    force = force is True or force == '1' or force == 'true' or force == 'True'
-
-    if force or not Post.objects.exists():
-        scrap()
-    query = Post.objects
-
-    if params.get('order'):
-        query = query.order_by(params.get('order', 'created'))
-
-    offset = int(params.get('offset', 0))
-    limit = int(params.get('limit', posts_api_limit))
-    limit = offset + limit
-
-    return query.all()[offset:limit]
