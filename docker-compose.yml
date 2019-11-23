@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  crawler:
+    build: .
+    volumes:
+      - /tmp/appfollow_data:/data/
+    ports:
+      - 8000:8000
+    environment:
+      PYTHONUNBUFFERED: 1
