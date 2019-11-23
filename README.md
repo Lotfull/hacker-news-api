@@ -22,7 +22,7 @@ API метод для получения списка новостей на за
     
     curl -X GET http://localhost:8000/posts?offset=10&limit=10
 
-Гитхаб репозиторий: https://github.com/Lotfull/appfollow-hacker-news
+Гитхаб репозиторий: https://github.com/Lotfull/hacker-news-api
 Приложение доступно по ссылке: appfollow.lotfullin.com
 Используется Docker
 Код покрыт тестами pytest
