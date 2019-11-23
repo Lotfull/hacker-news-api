@@ -20,7 +20,7 @@ class PostsView(generics.ListAPIView):
     pagination_class = PostsLimitOffsetPagination
     filter_backends = [filters.OrderingFilter]
     ordering_fields = '__all__'
-    ordering = ['created']
+    ordering = ['-created']
 
     def get_queryset(self):
         force = self.request.GET.get('force')
