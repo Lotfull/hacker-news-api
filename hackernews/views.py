@@ -2,7 +2,8 @@ import os
 
 from rest_framework import generics, filters, pagination, response
 
-from . import api
+from .api.scrap import scrap
+from .api.serializers import PostSerializer
 from .models import Post
 
 
@@ -15,7 +16,7 @@ class PostsLimitOffsetPagination(pagination.LimitOffsetPagination):
 
 
 class PostsView(generics.ListAPIView):
-    serializer_class = api.serializers.PostSerializer
+    serializer_class = PostSerializer
     pagination_class = PostsLimitOffsetPagination
     filter_backends = [filters.OrderingFilter]
     ordering_fields = '__all__'
@@ -25,6 +26,6 @@ class PostsView(generics.ListAPIView):
         force = self.request.GET.get('force')
         force = force is True or force == '1' or force == 'true' or force == 'True'
         if force or not Post.objects.exists():
-            api.posts.scrap()
+            scrap()
 
         return Post.objects.all()
